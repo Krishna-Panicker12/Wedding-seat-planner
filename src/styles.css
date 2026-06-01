@@ -271,16 +271,31 @@ button {
   padding: 0 28px;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
 button:focus-visible {
   outline: 4px solid rgba(255, 255, 255, 0.34);
   outline-offset: 3px;
 }
 
-.clear-button {
+.action-buttons {
   position: relative;
   z-index: 1;
-  width: 100%;
   margin-top: 12px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.action-buttons button:only-child {
+  grid-column: 1 / -1;
+}
+
+.clear-button {
+  width: 100%;
 }
 
 .status-line {
@@ -436,6 +451,10 @@ li.is-match {
 
   button {
     width: 100%;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
   }
 
   .search-panel,

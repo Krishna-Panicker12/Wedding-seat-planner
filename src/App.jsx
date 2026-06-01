@@ -9,6 +9,7 @@ export default function App() {
   const [guests, setGuests] = useState([]);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [submittedQuery, setSubmittedQuery] = useState('');
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState('');
 
@@ -44,12 +45,29 @@ export default function App() {
   const guestsByTable = useMemo(() => groupGuestsByTable(guests), [guests]);
   const query = `${firstName} ${lastName}`.trim();
   const canSearch = firstName.trim().length > 0 && lastName.trim().length > 0;
+  const hasSearched = submittedQuery.length > 0;
   const matches = useMemo(
-    () => (canSearch ? findTableMatches(query, guests, guestsByTable) : []),
-    [canSearch, query, guests, guestsByTable],
+    () =>
+      hasSearched
+        ? findTableMatches(submittedQuery, guests, guestsByTable)
+        : [],
+    [hasSearched, submittedQuery, guests, guestsByTable],
   );
 
   const hasPartialName = firstName.trim().length > 0 || lastName.trim().length > 0;
+
+  function handleInputChange(setValue, value) {
+    setValue(value);
+    setSubmittedQuery('');
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (canSearch && status === 'ready') {
+      setSubmittedQuery(query);
+    }
+  }
 
   return (
     <main>
@@ -76,7 +94,11 @@ export default function App() {
           </p>
         </div>
 
-        <section className="search-panel" aria-label="Guest search">
+        <form
+          className="search-panel"
+          aria-label="Guest search"
+          onSubmit={handleSubmit}
+        >
         <div className="name-fields">
           <div>
             <label htmlFor="first-name">First name</label>
@@ -87,7 +109,9 @@ export default function App() {
               placeholder="Example: Joy"
               type="text"
               value={firstName}
-              onChange={(event) => setFirstName(event.target.value)}
+              onChange={(event) =>
+                handleInputChange(setFirstName, event.target.value)
+              }
             />
           </div>
 
@@ -100,23 +124,32 @@ export default function App() {
               placeholder="Example: Barot"
               type="text"
               value={lastName}
-              onChange={(event) => setLastName(event.target.value)}
+              onChange={(event) =>
+                handleInputChange(setLastName, event.target.value)
+              }
             />
           </div>
         </div>
 
-        {hasPartialName && (
-          <button
-            className="clear-button"
-            type="button"
-            onClick={() => {
-              setFirstName('');
-              setLastName('');
-            }}
-          >
-            Clear
+        <div className="action-buttons">
+          <button type="submit" disabled={!canSearch || status !== 'ready'}>
+            Enter
           </button>
-        )}
+
+          {hasPartialName && (
+            <button
+              className="clear-button"
+              type="button"
+              onClick={() => {
+                setFirstName('');
+                setLastName('');
+                setSubmittedQuery('');
+              }}
+            >
+              Clear
+            </button>
+          )}
+        </div>
 
         <div className="status-line" role="status" aria-live="polite">
           {status === 'loading' && 'Loading the seating chart...'}
@@ -130,16 +163,20 @@ export default function App() {
             'Please enter both first and last name to search.'}
           {status === 'ready' &&
             canSearch &&
+            !hasSearched &&
+            'Click Enter to search.'}
+          {status === 'ready' &&
+            hasSearched &&
             matches.length > 0 &&
             `${matches.length} possible ${matches.length === 1 ? 'table' : 'tables'} found.`}
           {status === 'ready' &&
-            canSearch &&
+            hasSearched &&
             matches.length === 0 &&
             'No matching guest found.'}
         </div>
-        </section>
+        </form>
 
-        {status === 'ready' && canSearch && matches.length === 0 && (
+        {status === 'ready' && hasSearched && matches.length === 0 && (
           <section className="empty-state" aria-label="No results">
             <h2>No table found yet</h2>
             <p>
@@ -149,10 +186,13 @@ export default function App() {
           </section>
         )}
 
-        {status === 'ready' && matches.length > 0 && (
+        {status === 'ready' && hasSearched && matches.length > 0 && (
           <section className="results" aria-label="Matching table results">
             {matches.map((match) => (
-              <article className="table-card" key={match.table}>
+              <article
+                className="table-card"
+                key={`${match.table}-${match.matchedGuests[0]?.id || 'match'}`}
+              >
                 <div className="table-card-header">
                   <h2>{match.table ? `Table ${match.table}` : 'Table not assigned'}</h2>
                 </div>
