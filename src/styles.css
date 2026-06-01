@@ -281,21 +281,34 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+.search-panel-actions,
 .action-buttons {
   position: relative;
   z-index: 1;
+}
+
+.search-panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 42px;
+  margin-bottom: 8px;
+}
+
+.action-buttons {
   margin-top: 12px;
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.action-buttons button:only-child {
-  grid-column: 1 / -1;
+  grid-template-columns: 1fr;
 }
 
 .clear-button {
-  width: 100%;
+  min-height: 40px;
+  width: auto;
+  padding: 0 20px;
+  border: 1px solid rgba(255, 231, 151, 0.46);
+  background: rgba(243, 230, 200, 0.16);
+  color: var(--white);
+  font-size: 0.96rem;
 }
 
 .status-line {
@@ -389,26 +402,45 @@ button:focus-visible {
   font-weight: 950;
 }
 
-ul {
+.guest-list {
   display: grid;
-  gap: 16px;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-li {
-  border: 1px solid rgba(14, 2, 87, 0.1);
-  border-radius: 999px;
-  background: #f1f2ff;
-  color: var(--ink);
-  font-size: 1.08rem;
-  font-weight: 950;
-  line-height: 1.35;
-  padding: 12px 16px;
+.tablemate-list {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
 }
 
-li.is-match {
+.guest-list li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(14, 2, 87, 0.1);
+  border-radius: 18px;
+  background: #f1f2ff;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 950;
+  line-height: 1.2;
+  min-height: 54px;
+  padding: 9px 12px;
+}
+
+.guest-list img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.guest-list span {
+  overflow-wrap: anywhere;
+}
+
+.guest-list li.is-match {
   border-color: rgba(184, 137, 32, 0.5);
   background: #fff1b7;
   color: #170a34;
@@ -453,8 +485,14 @@ li.is-match {
     width: 100%;
   }
 
-  .action-buttons {
-    grid-template-columns: 1fr;
+  .search-panel-actions {
+    min-height: 38px;
+    margin-bottom: 6px;
+  }
+
+  .clear-button {
+    min-height: 36px;
+    padding: 0 16px;
   }
 
   .search-panel,
@@ -469,6 +507,24 @@ li.is-match {
 
   .table-card {
     padding: 26px 18px;
+  }
+
+  .tablemate-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .guest-list li {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 8px;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    min-height: 50px;
+    padding: 8px 10px;
+  }
+
+  .guest-list img {
+    width: 24px;
+    height: 24px;
   }
 }
 

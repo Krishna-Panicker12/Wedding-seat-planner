@@ -99,6 +99,22 @@ export default function App() {
           aria-label="Guest search"
           onSubmit={handleSubmit}
         >
+        {hasPartialName && (
+          <div className="search-panel-actions">
+            <button
+              className="clear-button"
+              type="button"
+              onClick={() => {
+                setFirstName('');
+                setLastName('');
+                setSubmittedQuery('');
+              }}
+            >
+              Clear
+            </button>
+          </div>
+        )}
+
         <div className="name-fields">
           <div>
             <label htmlFor="first-name">First name</label>
@@ -135,20 +151,6 @@ export default function App() {
           <button type="submit" disabled={!canSearch || status !== 'ready'}>
             Enter
           </button>
-
-          {hasPartialName && (
-            <button
-              className="clear-button"
-              type="button"
-              onClick={() => {
-                setFirstName('');
-                setLastName('');
-                setSubmittedQuery('');
-              }}
-            >
-              Clear
-            </button>
-          )}
         </div>
 
         <div className="status-line" role="status" aria-live="polite">
@@ -199,10 +201,11 @@ export default function App() {
 
                 <div className="matched-guests">
                   <h3>Matched name</h3>
-                  <ul>
+                  <ul className="guest-list matched-list">
                     {match.matchedGuests.map((guest) => (
                       <li key={`${guest.guest_name}-${guest.table}`}>
-                        {guest.guest_name}
+                        <img aria-hidden="true" src="/user.png" alt="" />
+                        <span>{guest.guest_name}</span>
                       </li>
                     ))}
                   </ul>
@@ -210,7 +213,7 @@ export default function App() {
 
                 <div className="tablemates">
                   <h3>{match.table ? 'Sitting with' : 'Guest'}</h3>
-                  <ul>
+                  <ul className="guest-list tablemate-list">
                     {match.tableGuests.map((guest) => {
                       const isMatched = match.matchedGuests.some(
                         (matchedGuest) => matchedGuest.id === guest.id,
@@ -221,7 +224,8 @@ export default function App() {
                           className={isMatched ? 'is-match' : undefined}
                           key={guest.id}
                         >
-                          {guest.guest_name}
+                          <img aria-hidden="true" src="/user.png" alt="" />
+                          <span>{guest.guest_name}</span>
                         </li>
                       );
                     })}
