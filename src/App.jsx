@@ -122,7 +122,7 @@ export default function App() {
               id="first-name"
               autoComplete="given-name"
               inputMode="text"
-              placeholder="Ex: Aubrey"
+              placeholder="Ex: Joy"
               type="text"
               value={firstName}
               onChange={(event) =>
@@ -137,7 +137,7 @@ export default function App() {
               id="last-name"
               autoComplete="family-name"
               inputMode="text"
-              placeholder="Ex: Graham"
+              placeholder="Ex: Barot"
               type="text"
               value={lastName}
               onChange={(event) =>
