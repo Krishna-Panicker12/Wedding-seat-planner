@@ -89,8 +89,8 @@ export default function App() {
         <div className="section-heading">
           <h2 id="finder-title">Find your table</h2>
           <p className="intro">
-            Enter your first name, last name, or both to see your table and the
-            guests seated with you.
+            Enter your first and last name to see your table and the guests
+            seated with you.
           </p>
         </div>
 
