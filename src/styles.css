@@ -186,6 +186,10 @@ p {
   .section-heading {
     margin-bottom: 46px;
   }
+
+  .section-heading h2 {
+    margin-bottom: 28px;
+  }
 }
 
 .search-panel,
