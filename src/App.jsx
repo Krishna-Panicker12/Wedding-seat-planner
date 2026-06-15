@@ -73,7 +73,7 @@ export default function App() {
     <main>
       <section className="invitation-hero" aria-labelledby="wedding-title">
         <div className="hero-content">
-          <p className="welcome-line">Welcome to the reception of</p>
+          <p className="welcome-line">Welcome to the Wedding Reception of</p>
           <h1 id="wedding-title">Dwij &amp; Shefali</h1>
           <a className="hero-button" href="#table-finder">
             Find Your Table
@@ -156,9 +156,6 @@ export default function App() {
         <div className="status-line" role="status" aria-live="polite">
           {status === 'loading' && 'Loading the seating chart...'}
           {status === 'error' && error}
-          {status === 'ready' &&
-            !hasPartialName &&
-            `${guests.length} guests loaded. Enter your first name, last name, or both to search.`}
           {status === 'ready' &&
             canSearch &&
             !hasSearched &&
