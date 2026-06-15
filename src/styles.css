@@ -182,6 +182,12 @@ p {
   line-height: 1.6;
 }
 
+@media (min-width: 761px) {
+  .section-heading {
+    margin-bottom: 46px;
+  }
+}
+
 .search-panel,
 .empty-state,
 .table-card {
