@@ -41,7 +41,7 @@ VITE_SEATING_CSV_URL=https://docs.google.com/spreadsheets/d/e/YOUR_PUBLISHED_CSV
 ```
 
 If the environment variable is missing, the app uses
-`public/File_Guest_Name_Sample.csv`.
+`public/June15_seating_arrangment.csv`.
 
 ## Deploy To Cloudflare Pages
 
