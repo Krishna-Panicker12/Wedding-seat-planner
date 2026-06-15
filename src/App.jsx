@@ -44,7 +44,7 @@ export default function App() {
 
   const guestsByTable = useMemo(() => groupGuestsByTable(guests), [guests]);
   const query = `${firstName} ${lastName}`.trim();
-  const canSearch = firstName.trim().length > 0 && lastName.trim().length > 0;
+  const canSearch = firstName.trim().length > 0 || lastName.trim().length > 0;
   const hasSearched = submittedQuery.length > 0;
   const matches = useMemo(
     () =>
@@ -89,8 +89,8 @@ export default function App() {
         <div className="section-heading">
           <h2 id="finder-title">Find your table</h2>
           <p className="intro">
-            Enter your first and last name to see your table and the guests
-            seated with you.
+            Enter your first name, last name, or both to see your table and the
+            guests seated with you.
           </p>
         </div>
 
@@ -158,11 +158,7 @@ export default function App() {
           {status === 'error' && error}
           {status === 'ready' &&
             !hasPartialName &&
-            `${guests.length} guests loaded. Enter your first and last name to search.`}
-          {status === 'ready' &&
-            hasPartialName &&
-            !canSearch &&
-            'Please enter both first and last name to search.'}
+            `${guests.length} guests loaded. Enter your first name, last name, or both to search.`}
           {status === 'ready' &&
             canSearch &&
             !hasSearched &&

@@ -40,6 +40,26 @@ describe('guest search', () => {
     expect(results[0].matchedGuests[0].guest_name).toBe('Sreelatha Mundip');
   });
 
+  it('matches when only the first name is searched', () => {
+    const results = findTableMatches('Maya', guests, groupGuestsByTable(guests));
+
+    expect(results).toHaveLength(1);
+    expect(results[0].table).toBe('4');
+    expect(results[0].matchedGuests.map((guest) => guest.guest_name)).toEqual([
+      'Maya Patel',
+    ]);
+  });
+
+  it('matches when only the last name is searched', () => {
+    const results = findTableMatches('Singh', guests, groupGuestsByTable(guests));
+
+    expect(results).toHaveLength(1);
+    expect(results[0].table).toBe('11');
+    expect(results[0].matchedGuests.map((guest) => guest.guest_name)).toEqual([
+      'Nina Singh',
+    ]);
+  });
+
   it('scores close full-name searches', () => {
     expect(scoreGuestName('latha mundip', 'sreelatha mundip')).toBeGreaterThan(0);
   });
