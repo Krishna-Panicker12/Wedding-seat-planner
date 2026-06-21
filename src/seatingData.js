@@ -2,6 +2,7 @@ import Papa from 'papaparse';
 
 const legacyColumns = ['guest_name', 'table'];
 const splitNameColumns = ['first_name', 'last_name'];
+const tableColumns = ['table', 'table_#'];
 
 export async function loadSeatingCsv(url) {
   const response = await fetch(withCacheBust(url), {
@@ -55,18 +56,24 @@ function normalizeGuestRow(row, index, useSplitNameColumns) {
   const guestName = useSplitNameColumns
     ? `${row.first_name || ''} ${row.last_name || ''}`.trim()
     : row.guest_name;
+  const table = getTableValue(row);
 
   if (!guestName) {
     return null;
   }
 
   return {
-    id: `${guestName}-${row.table}-${index}`,
+    id: `${guestName}-${table}-${index}`,
     guest_name: guestName,
     first_name: row.first_name || '',
     last_name: row.last_name || '',
-    table: row.table || '',
+    table,
   };
+}
+
+function getTableValue(row) {
+  const tableColumn = tableColumns.find((column) => row[column] !== undefined);
+  return tableColumn ? row[tableColumn] : '';
 }
 
 function withCacheBust(url) {

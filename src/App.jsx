@@ -3,7 +3,7 @@ import { findTableMatches, groupGuestsByTable } from './search.js';
 import { loadSeatingCsv } from './seatingData.js';
 
 const seatingCsvUrl =
-  '/The%20Final%20Reception%20Seating%20Plan%20Jun%2018.xlsx%20-%20Sheet1.csv';
+  '/Final%20Final%20Final%20Guest%20Seating%20June%2021.xlsx%20-%20Sheet1.csv';
 
 export default function App() {
   const [guests, setGuests] = useState([]);

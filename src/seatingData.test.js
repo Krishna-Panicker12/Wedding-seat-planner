@@ -36,6 +36,13 @@ Sreelatha,Mundip,8`);
     expect(guests[0].guest_name).toBe('Sreelatha Mundip');
   });
 
+  it('accepts table number headers with a symbol', () => {
+    const guests = parseSeatingCsv(`First Name,Last Name,Table #
+Aarushi,Vasudev,22`);
+
+    expect(guests[0].table).toBe('22');
+  });
+
   it('still accepts legacy guest_name and table columns', () => {
     const guests = parseSeatingCsv(`guest_name,table
 Parth Patel,4`);

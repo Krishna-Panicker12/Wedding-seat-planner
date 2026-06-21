@@ -34,7 +34,7 @@ npm.cmd run dev
 
 ## Seating Data
 
-The app uses `public/The Final Reception Seating Plan Jun 18.xlsx - Sheet1.csv`
+The app uses `public/Final Final Final Guest Seating June 21.xlsx - Sheet1.csv`
 as the main seating data source.
 
 ## Deploy To Cloudflare Pages
