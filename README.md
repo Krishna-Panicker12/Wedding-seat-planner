@@ -32,16 +32,10 @@ npm.cmd install
 npm.cmd run dev
 ```
 
-## Environment
+## Seating Data
 
-Create `.env.local`:
-
-```text
-VITE_SEATING_CSV_URL=https://docs.google.com/spreadsheets/d/e/YOUR_PUBLISHED_CSV_URL/pub?output=csv
-```
-
-If the environment variable is missing, the app uses
-`public/Final Reception Seating Plan.xlsx - Sheet1.csv`.
+The app uses `public/The Final Reception Seating Plan Jun 18.xlsx - Sheet1.csv`
+as the main seating data source.
 
 ## Deploy To Cloudflare Pages
 
@@ -50,6 +44,5 @@ If the environment variable is missing, the app uses
 3. Use these build settings:
    - Build command: `npm run build`
    - Build output directory: `dist`
-4. Add `VITE_SEATING_CSV_URL` as a production environment variable.
-5. Deploy, then point the wedding QR code to the Cloudflare Pages URL or custom
+4. Deploy, then point the wedding QR code to the Cloudflare Pages URL or custom
    domain.

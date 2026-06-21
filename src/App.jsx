@@ -3,8 +3,7 @@ import { findTableMatches, groupGuestsByTable } from './search.js';
 import { loadSeatingCsv } from './seatingData.js';
 
 const seatingCsvUrl =
-  import.meta.env.VITE_SEATING_CSV_URL ||
-  '/Final%20Reception%20Seating%20Plan.xlsx%20-%20Sheet1.csv';
+  '/The%20Final%20Reception%20Seating%20Plan%20Jun%2018.xlsx%20-%20Sheet1.csv';
 
 export default function App() {
   const [guests, setGuests] = useState([]);
