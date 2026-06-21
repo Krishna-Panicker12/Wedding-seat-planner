@@ -1,4 +1,4 @@
-﻿First Name,Last Name,Table 
+First Name,Last Name,Table 
 Shefali,Panicker,
 Dwij,Padia,
 Aarushi,Vasudev,22
@@ -138,7 +138,7 @@ Sarvarinder,Singh,5
 Rajinder,Kaur,5
 Sashi,Vijayan,14
 Shailesh,Nene,4
-Nisha,Sharma-Nene,4
+Nisha,Sharma,4
 Soman,Sreedharan,6
 Preetha,Soman,6
 Sonal,Sheth-Kanthan,2
@@ -167,7 +167,7 @@ Virender,Guleria,8
 Vidya,Verma,8
 Vishal,Papreja,1
 Sheetal,Papreja,1
-Bimala,,1
+Bimala,Kukreja,1
 Visheshwar,Kudariya,5
 Reet,Kudariya,5
 Vishnuprasad,Nair,7
@@ -179,7 +179,7 @@ Ganesh,Vallamkonda,11
 Parimala,Joseph,3
 Jaimin,Padia,32
 Dipa,Padia,32
-Disha,Padia,32
+Disha,Padia,20
 Sureshchandra,Padia,31
 Prafullaben,Padia,31
 Jaykrishna,Padia,32
@@ -344,6 +344,8 @@ Meena,Bahuguna,33
 Gunjan,Desai,40
 Shruti,Desai,40
 Michael,Jackson,40
+Kunj,Patel,20
+Khushboo,Patel,25
 Vithusan,,
 Vithusan,,
 Vithusan,,
